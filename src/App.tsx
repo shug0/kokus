@@ -1,18 +1,21 @@
+import { useEffect } from "react";
 import useRandom from "./hooks/useRandom";
 import animals from "./data/animals.json";
 import jobs from "./data/jobs.json";
 import emotions from "./data/emotions.json";
-import { useEffect } from "react";
+import colors from "./data/colors.json";
 
 function App() {
   const [randomAnimal, getRandomAnimal] = useRandom(animals);
   const [randomJob, getRandomJob] = useRandom(jobs);
   const [randomEmotion, getRandomEmotion] = useRandom(emotions);
+  const [randomColor, getRandomColor] = useRandom(colors);
 
   const handleGetNewOne = () => {
     getRandomAnimal();
     getRandomJob();
     getRandomEmotion();
+    getRandomColor();
   };
 
   useEffect(() => {
@@ -23,7 +26,7 @@ function App() {
     <div
       className={`
         h-full
-        px-8 py-20
+        px-8 py-16
         text-center
         flex flex-col items-center
         bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black
@@ -36,16 +39,24 @@ function App() {
       <section className="flex flex-col items-center">
         <h2 className="text mb-8 font-light">Pourquoi pas un.e ..</h2>
         <div className="mb-8 flex flex-col gap-2">
-          <div className="text-accent-content text-4xl font-semibold">
+          <div className="text-accent-content text-3xl font-semibold">
             {randomJob}
           </div>
           <div>ascendant..</div>
-          <div className="text-accent-content text-4xl font-semibold">
+          <div className="text-accent-content text-3xl font-semibold">
             {randomAnimal}
           </div>
           <div>avec..</div>
-          <div className="text-accent-content text-4xl font-semibold">
+          <div className="text-accent-content text-3xl font-semibold">
             {randomEmotion}
+          </div>
+          <div>coloré.e..</div>
+          <div className="text-accent-content text-3xl font-semibold flex items-center justify-center">
+            <div
+              className="h-6 w-6 rounded-full mr-3"
+              style={{ backgroundColor: randomColor.value }}
+            />
+            {randomColor.name}
           </div>
         </div>
       </section>
