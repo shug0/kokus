@@ -2,6 +2,7 @@ import useRandom from "./hooks/useRandom";
 import animals from "./data/animals.json";
 import jobs from "./data/jobs.json";
 import emotions from "./data/emotions.json";
+import { useEffect } from "react";
 
 function App() {
   const [randomAnimal, getRandomAnimal] = useRandom(animals);
@@ -13,6 +14,10 @@ function App() {
     getRandomJob();
     getRandomEmotion();
   };
+
+  useEffect(() => {
+    handleGetNewOne();
+  }, []);
 
   return (
     <div
